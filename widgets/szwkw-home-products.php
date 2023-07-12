@@ -6,7 +6,7 @@ class Home_products extends \Elementor\Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'Home products', 'elementor-addon' );
+		return esc_html__( 'Products Section', 'elementor-addon' );
 	}
 
 	public function get_icon() {
@@ -232,7 +232,7 @@ class Home_products extends \Elementor\Widget_Base {
     protected function render() {
 			$settings = $this->get_settings_for_display();
 		?>
-				<div class="box1">
+			<div class="box1">
 				<div class="content1600">
 					<div class="box-t">
 						<div class="index-title wow fadeInUpSmall" wow fadeInUpSmall data-wow-delay=".3s">
