@@ -319,7 +319,7 @@ class Szwkw_Slider extends \Elementor\Widget_Base {
   <script type="text/javascript">
 		new WOW().init()
 		var banner = new Swiper('.banner .swiper', {
-			loop: false,
+			loop: true,
 			resistanceRatio: 0,
 			autoplay: {
 				disableOnInteraction: false,
@@ -344,42 +344,7 @@ class Szwkw_Slider extends \Elementor\Widget_Base {
 				clickable: true,
 			},
 		})
-		$(".box1 .box-t .box-t-r a").click(function() {
-			$(this).addClass("active").siblings().removeClass("active")
-			$(".box1 .box-c .list").eq($(this).index()).addClass("active").siblings().removeClass("active")
-		})
-		var box2 = new Swiper(".box2 .swiper", {
-			slidesPerView: "auto",
-			pagination: {
-				el: ".box2 .swiper-pagination",
-				clickable: true,
-			},
-		})
-		var box4 = new Swiper(".box4 .swiper", {
-			slidesPerView: "auto",
-			navigation: {
-				nextEl: ".box4  .btn-next",
-				prevEl: ".box4  .btn-prev",
-			},
-			pagination: {
-				el: ".box4 .swiper-pagination",
-				clickable: true,
-			},
-		})
-		var box5 = new Swiper(".box5 .swiper", {
-			slidesPerView: "auto",
-			navigation: {
-				nextEl: ".box5  .btn-next",
-				prevEl: ".box5  .btn-prev",
-			},
-		})
-		var box6 = new Swiper(".box6 .swiper", {
-			slidesPerView: "auto",
-			pagination: {
-				el: ".box6 .swiper-pagination",
-				clickable: true,
-			},
-		})
+		
 	</script>
         <?php
     }
