@@ -1,19 +1,6 @@
 <?php
 use \Elementor\Widget_Base;
 class Szwkw_Slider extends \Elementor\Widget_Base {
-    // public function __construct($data = [], $args = null) {
-    //     parent::__construct($data, $args);
-    
-    //     // Enqueue Swiper CSS
-    //     add_action('elementor/frontend/after_enqueue_styles', [$this, 'enqueue_swiper_styles']);
-    
-        
-    // }
-    
-    // public function enqueue_swiper_styles() {
-    //     wp_enqueue_style('swiper', plugin_dir_url(__FILE__).'widgets/css/swiper-bundle.min.css' );
-    // }
-    
 
 
 
@@ -145,6 +132,7 @@ class Szwkw_Slider extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Button First Color', 'elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '#013AAE'
 			]
 		);
         $this->add_control(
@@ -152,20 +140,23 @@ class Szwkw_Slider extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Button Second Color', 'elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
-			]
-		);
-        $this->add_control(
-			'szwkw_slider_button_text_color',
-			[
-				'label' => esc_html__( 'Button Text Color', 'elementor-addon' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-			]
-		);
-        $this->add_control(
-			'szwkw_slider_button_text_hvr_color',
-			[
-				'label' => esc_html__( 'Button Hover Color', 'elementor-addon' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '#0077D3'
+				]
+			);
+			$this->add_control(
+				'szwkw_slider_button_text_color',
+				[
+					'label' => esc_html__( 'Button Text Color', 'elementor-addon' ),
+					'type' => \Elementor\Controls_Manager::COLOR,
+					'default' => '#FFFFFF'
+					]
+				);
+			$this->add_control(
+					'szwkw_slider_button_text_hvr_color',
+					[
+						'label' => esc_html__( 'Button Hover Color', 'elementor-addon' ),
+						'type' => \Elementor\Controls_Manager::COLOR,
+						'default' => '#FFFFFF'
 			]
 		);
         $this->add_control(
