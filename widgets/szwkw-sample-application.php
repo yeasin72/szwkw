@@ -1,16 +1,17 @@
 <?php
+
 use \Elementor\Widget_Base;
-class News_Widget extends \Elementor\Widget_Base {
+class Sample_Application extends \Elementor\Widget_Base {
     public function get_name() {
-		return 'szwkw_news_widget';
+		return 'szwkw_sample_application_widget';
 	}
 
 	public function get_title() {
-		return esc_html__( 'News', 'elementor-addon' );
+		return esc_html__( 'Sample Application', 'elementor-addon' );
 	}
 
 	public function get_icon() {
-		return 'eicon-posts-grid';
+		return 'eicon-posts-group';
 	}
 
 	public function get_categories() {
@@ -18,7 +19,7 @@ class News_Widget extends \Elementor\Widget_Base {
 	}
 
 	public function get_keywords() {
-		return [ 'news', 'post', 'list' ];
+		return [ 'application', 'grid', 'list' ];
 	}
 
 
@@ -33,7 +34,7 @@ class News_Widget extends \Elementor\Widget_Base {
 		);
 
         $this->add_control(
-			'news_navigation_list',
+			'download_navigation_list',
 			[
                 'label' => 'Navigation List',
 				'type' => \Elementor\Controls_Manager::REPEATER,
@@ -64,20 +65,17 @@ class News_Widget extends \Elementor\Widget_Base {
 				],
 				'default' => [
 					[
-						'navigation_name' => esc_html__( 'About us', 'textdomain' ),
+						'navigation_name' => esc_html__( 'Sample Application', 'textdomain' ),
 					],
 					[
-						'navigation_name' => esc_html__( 'Supply Capacity', 'textdomain' ),
+						'navigation_name' => esc_html__( 'Data Download', 'textdomain' ),
 					],
 					[
-						'navigation_name' => esc_html__( 'Authentication', 'textdomain' ),
+						'navigation_name' => esc_html__( 'Testing Laborato', 'textdomain' ),
 					],
 					[
-						'navigation_name' => esc_html__( 'Aulture', 'textdomain' ),
-					],
-					[
-						'navigation_name' => esc_html__( 'News', 'textdomain' ),
-					],
+						'navigation_name' => esc_html__( 'Fae Support', 'textdomain' ),
+					]
 					
 					
 				]
@@ -106,10 +104,10 @@ class News_Widget extends \Elementor\Widget_Base {
 				],
 				'default' => [
 					[
-						'item_name' => esc_html__( 'About VICORV', 'textdomain' ),
+						'item_name' => esc_html__( 'technical-support', 'textdomain' ),
 					],
 					[
-						'item_name' => esc_html__( 'News', 'textdomain' ),
+						'item_name' => esc_html__( 'Testing Laboratory', 'textdomain' ),
 					],
 					
 				]
@@ -142,17 +140,6 @@ class News_Widget extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control(
-			'category_bg_img',
-			[
-				'label' => esc_html__( 'Category Background', 'textdomain' ),
-                'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => [
-                    'url' => \Elementor\Utils::get_placeholder_image_src(),
-                ],
-			]
-		);
-
         $this->end_controls_section();
 
 		
@@ -172,33 +159,16 @@ class News_Widget extends \Elementor\Widget_Base {
         
             $query = new \WP_Query( $args );
             $total_pages = $query->max_num_pages;
-            $categories = get_terms( array(
-                'taxonomy' => 'news_category',
-                'hide_empty' => false,
-            ) );
             ?>
             <style>
-                .news .box1 .box-t a:before {
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    content: "";
-                    width: 100%;
-                    height: 100%;
-                    background-image: url(<?php echo $settings['category_bg_img']['url']; ?>);
-                    background-size: cover;
-                }
                 
-                .hoverLi .pic {
-                    display: block!important;
-                }
             </style>
-            <div class="news">
-				<div class="commonNav wow fadeInUpSmall"  wow fadeInUpSmall data-wow-delay=".3s">
+            <div class="applications">
+                <div class="commonNav wow fadeInUpSmall"  wow fadeInUpSmall data-wow-delay=".3s">
 					<div class="content1400">
-						<div class="swiper">
+						<div class="swiper">      
 							<div class="swiper-wrapper">
-                            <?php foreach($settings['news_navigation_list'] as $nav) { ?>
+                                <?php foreach($settings['download_navigation_list'] as $nav) { ?>
 								<div class="swiper-slide <?php if($nav['active_link'] == "yes") { echo "active"; } ?>"><a href="<?php echo $nav['navigation_link']['url']; ?>"><?php echo $nav['navigation_name']; ?></a></div>
 								<?php } ?>
 							</div>
@@ -206,60 +176,37 @@ class News_Widget extends \Elementor\Widget_Base {
 					</div>
 				</div>
 				<div class="commonBread content1400 wow fadeInUpSmall"  wow fadeInUpSmall data-wow-delay=".3s">
-					<a href="/"><span class="iconfont icon-home"></span></a>
-                    <?php foreach($settings['breadcumb_list'] as $menu) { ?>
+                    <a href="/"><span class="iconfont icon-home"></span></a>
+					<?php foreach($settings['breadcumb_list'] as $menu) { ?>
 					<span class="iconfont icon-youjiantou11"></span>
 					<a href="<?php echo $menu['item_link']['url']; ?>"><?php echo $menu['item_name']; ?></a>
                     <?php } ?>
 				</div>
 				<div class="box1">
 					<div class="content1400">
-						<div class="box-t wow fadeInUpSmall"  wow fadeInUpSmall data-wow-delay=".3s">
-                            <?php 
-                            foreach ( $categories as $index => $category ) {
-                                $category_name = $category->name;
-                                $category_link = get_term_link( $category );
-                            ?>
-							<a href="<?php echo $category_link; ?>" class="<?php if($index == 0) { echo "active"; } ?>">
-								<div class="icon"><span class="iconfont icon-gongsiguanli"></span></div>
-								<p class="text"><?php echo $category_name; ?></p>
-							</a>
-                            <?php } ?>
-						</div>
-						<div class="box-c wow fadeInUpSmall"  wow fadeInUpSmall data-wow-delay=".3s">
+						<div class="box-c">
 							<ul class="list">
-                                <?php if ($query->have_posts(  )) {
+                            <?php if ($query->have_posts(  )) {
                                     while($query->have_posts(  )) { 
                                     $query->the_post();
                                     // Retrieve post information
                                     $post_title = get_the_title();
                                     $post_featured_image_id = get_post_thumbnail_id();
-                                    $post_featured_image_url = wp_get_attachment_image_url( $post_featured_image_id, 'full' );
-                                    $post_date = get_the_date( 'Y.m.d' );
-                                    $post_excerpt = wp_trim_words( get_the_excerpt(), 15 ); // Limit excerpt to 15 words
+                                    $post_featured_image_url = wp_get_attachment_image_url( $post_featured_image_id, 'full' ); // Limit excerpt to 15 words
                                     $post_permalink = get_permalink();
                                         ?>
-								<li class="hoverLi">
+								<li class="hoverLi wow fadeInUpSmall"  wow fadeInUpSmall data-wow-delay=".3s">
 									<a href="<?php echo $post_permalink; ?>">
 										<div class="pic">
 											<img src="<?php echo $post_featured_image_url; ?>" alt="" class="imgScale">
 										</div>
 										<div class="text-box">
-											<p class="text-title"><?php echo $post_title; ?></p>
-											<p class="text-des"><?php echo $post_excerpt; ?></p>
-											<div class="li-b">
-												<div class="li-b-l">
-													<span class="time">Time</span> <span class="bullet">•</span> <?php echo $post_date; ?>
-												</div>
-												<div class="li-b-r">
-													<span class="iconfont icon-youjiantou11"></span>
-												</div>	
-											</div>
+											<span class="text"><?php echo $post_title; ?></span>
+											<span class="iconfont icon-youjiantou11"></span>
 										</div>
 									</a>
 								</li>
                                 <?php }} ?>
-								
 								<i></i>
 								<i></i>
 								<i></i>
@@ -267,8 +214,7 @@ class News_Widget extends \Elementor\Widget_Base {
 							</ul>
 							<div class="pagination">
 								<ul>
-                                    
-                                    <?php 
+                                <?php 
                                         if (get_previous_posts_link()) {
                                             echo '<li>' .get_previous_posts_link( '<span class="iconfont icon-zuojiantou1"></span>' ) . '</li>';
                                         }
@@ -287,7 +233,6 @@ class News_Widget extends \Elementor\Widget_Base {
                                             echo '<li><a href="' . esc_url( get_next_posts_page_link() ) . '"><span class="iconfont icon-youjiantou11"></span></a></li>';
                                         }
                                     ?>
-									
 								</ul>
 							</div>
 						</div>

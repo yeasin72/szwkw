@@ -82,8 +82,17 @@ class News_Details extends \Elementor\Widget_Base {
             // Previous and Next post buttons with titles
             $previous_post = get_previous_post();
             $next_post = get_next_post();
+			// Display related news
+			$related_args = array(
+				'post_type' => 'news',
+				'posts_per_page' => 3,
+				'post__not_in' => array($post_id),
+			);
+
+			$related_query = new WP_Query($related_args);
 		?>
             <style>
+				
                 .news-details .box1 .box-c img{
                     width: 100%;
                 }
@@ -152,7 +161,53 @@ class News_Details extends \Elementor\Widget_Base {
 						</div>
 					</div>
 				</div>
+				<?php if($related_query->have_posts( )) { ?>
+				<div class="box2">
+					<div class="content1400">
+						<div class="box-t wow fadeInUpSmall"  wow fadeInUpSmall data-wow-delay=".3s">
+							<p class="innerTitle">Related news</p>
+						</div>
+						<div class="box-c wow fadeInUpSmall"  wow fadeInUpSmall data-wow-delay=".3s">
+							<div class="swiper">
+								<div class="swiper-wrapper">
+									<?php
+									while ($related_query->have_posts()) {
+										$related_query->the_post();
+										$related_desc = wp_trim_words(get_the_content(), 15);
+										$related_date = get_the_date('Y.m.d');
+										?>
+										<div class="swiper-slide">
+											<a href="">
+												<div class="text-box">
+													<p class="date">
+														<span class="time">Time</span> <span class="bullet">•</span> <?php echo $related_date; ?>
+													</p>
+													<p class="text-title"><?php the_title(); ?></p>
+													<p class="text-des"><?php echo $related_desc; ?></p>
+												</div>
+											</a>
+										</div>
+									<?php
+									}
+									?>
+								</div>
+							</div>
+							<div class="swiper-pagination"></div>
+						</div>
+					</div>
+				</div>
+				<?php } ?>
 			</div>
+			<script type="text/javascript">
+				new WOW().init()
+				var box2 = new Swiper(".box2 .swiper", {
+					slidesPerView: "auto",
+					pagination: {
+						el: ".box2 .swiper-pagination",
+						clickable: true,
+					},
+				})
+			</script>
         <?php
     }
 }

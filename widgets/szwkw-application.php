@@ -201,6 +201,7 @@ class Home_Application extends \Elementor\Widget_Base {
 
 		?>
             <style>
+				
                 .box2{
                     position: relative;
                     padding: 123px 0 158px;

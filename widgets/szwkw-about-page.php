@@ -560,9 +560,9 @@ class About_Page extends \Elementor\Widget_Base {
 							<div class="swiper-wrapper">
 								<div class="swiper-slide active"><a href="#box1">About us</a></div>
 								<div class="swiper-slide"><a href="#box2">Supply Capacity</a></div>
-								<div class="swiper-slide"><a href="#box3">Authentication</a></div>
-								<div class="swiper-slide"><a href="#box4">Aulture</a></div>
-								<div class="swiper-slide"><a href="<?php echo $settings['news_link']; ?>">News</a></div>
+								<div class="swiper-slide"><a href="#box4">Authentication</a></div>
+								<div class="swiper-slide"><a href="#box5">Aulture</a></div>
+								<div class="swiper-slide"><a href="<?php echo $settings['news_link']['url']; ?>">News</a></div>
 							</div>
 						</div>
 					</div>
